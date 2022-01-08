@@ -3,7 +3,8 @@ from discord.ext import commands
 
 from utils import checks
 from utils.json_wrapper import insert_config
-from cogs.views import BeginVerification
+
+from cogs.captcha import BeginVerification
 
 class Configuration(commands.Cog):
     def __init__(self, bot):
