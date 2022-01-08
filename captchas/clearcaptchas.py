@@ -3,4 +3,5 @@
 import os
 
 for file in os.listdir("captchas/"):
-    os.remove("captchas/" + file)
+    if file.endswith(".png"):
+        os.remove("captchas/" + file)
