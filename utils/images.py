@@ -16,7 +16,7 @@ def generate_captcha(*, chars: int = 5):
     return {
         "filename": file_name + ".png",
         "file_src": discord.File(f"captchas/{file_name}.png", filename="captcha.png"),
-        "text": text,
+        "text": text.lower(),
         "chars": chars
     }
 
