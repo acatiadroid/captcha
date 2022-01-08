@@ -1,9 +1,7 @@
 import discord
-import asyncio
-from discord.ext.commands import CooldownMapping, CommandError
+from discord.ext.commands import CommandError
 
 from utils import images
-from cogs.captcha import Captcha
 
 def key(interaction):
     return interaction.user
@@ -16,7 +14,6 @@ class RegenCaptcha(discord.ui.View):
     def __init__(self):
         super().__init__()
         self.timeout = 45
-        self.ctx = None
 
     async def interaction_check(self, interaction: discord.Interaction):
         retry_after = self.cooldown.update_rate_limit(interaction)
