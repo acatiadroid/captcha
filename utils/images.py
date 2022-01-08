@@ -3,7 +3,6 @@ import string
 import random
 import discord
 import os
-import logging
 
 def generate_captcha(*, chars: int = 5):
     text = ''.join(random.choice(string.digits + string.ascii_lowercase)
