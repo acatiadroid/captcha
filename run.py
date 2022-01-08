@@ -10,5 +10,5 @@ bot = Bot()
 
 if __name__ == "__main__":
     for ext in extensions:
-        Bot().load_extension(ext)
-    Bot().run(config("TOKEN"))
+        bot.load_extension(ext)
+    bot.run(config("TOKEN"))
