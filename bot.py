@@ -1,10 +1,14 @@
-import discord
-import asyncio
-import os
 from decouple import config
 from discord.ext import commands
 
+from cogs.views import BeginVerification
+
 bot = commands.Bot(command_prefix="c.")
+
+@bot.event
+async def on_ready():
+    bot.add_view(BeginVerification())
+    print('Views added')
 
 # @bot.command()
 # async def captcha(ctx):
@@ -26,4 +30,6 @@ bot = commands.Bot(command_prefix="c.")
 
 
 if __name__ == "__main__":
-    bot.run(config["TOKEN"])
+    bot.load_extension("cogs.setup")
+    bot.load_extension("cogs.captcha")
+    bot.run(config("TOKEN"))
