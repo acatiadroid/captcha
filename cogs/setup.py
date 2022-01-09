@@ -3,7 +3,6 @@ from discord.ext import commands
 
 from utils import checks
 from utils.json_wrapper import insert_config
-
 from cogs.captcha import BeginVerification
 
 class Configuration(commands.Cog):
@@ -41,7 +40,26 @@ class Configuration(commands.Cog):
         
         await ctx.send(f"Success! The message has been sent into {channel.mention}.")
 
-    
+    @commands.command(name="verifiedrole", aliases=["vrole", "verified_role"])
+    @checks.guild_manager()
+    async def verifiedrole(self, ctx, role: discord.Role):
+        """
+        Sets the role that will be given to users that complete the captcha successfully.
+
+        Required permission:
+        Manage Guild
+
+        Arguments:
+            role — the role to give to users that pass verification.
+        """
+        botrole = ctx.me.top_role
+        if role.position >= botrole.position:
+            return await ctx.send(f'{role} (position: {role.position})is above or equal to my highest role {botrole} (position: {botrole.position}). This means I can\'t give that role.')
+
+        
+        
+
+
 
 def setup(bot):
     bot.add_cog(Configuration(bot))

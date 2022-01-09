@@ -31,20 +31,6 @@ class BeginVerification(discord.ui.View):
         super().__init__()
         self.timeout = None
         self.bot = botobj
-        self.cooldown = CooldownMapping.from_cooldown(1, 30, key)
-
-    # async def interaction_check(self, interaction: discord.Interaction):
-    #     print('yes')
-    #     retry_after = self.cooldown.update_rate_limit(interaction)
-
-    #     if retry_after:
-    #         raise ButtonOnCooldown(retry_after)
-
-
-    async def on_error(self, error: Exception, item: discord.ui.Item, interaction: discord.Interaction):
-        if isinstance(error, ButtonOnCooldown):
-            time = f"{error.retry_after} second" if error.retry_after == 1 else f"{error.retry_after} seconds"
-            return await interaction.response.send_message(f"You're on cooldown. Please wait {time}.", ephemeral=True)
 
     @discord.ui.button(style=discord.ButtonStyle.green, label="Begin Verification", custom_id="btn")
     async def btnBegin(self, button: discord.ui.Button, interaction: discord.Interaction):
@@ -75,7 +61,6 @@ class BeginVerification(discord.ui.View):
 
             try:
                 msg = await bot.wait_for("message", check=check, timeout=45)
-                print("1")
                 if msg.content.lower() == captcha["text"]:
                     return await dm.send('correct')
                 else:
