@@ -16,4 +16,6 @@ class Bot(commands.Bot):
                 intents=Intents.all(),
                 owner_id=600056626749112322
             )
-
+    
+    async def on_ready(self):
+        print("yo")
