@@ -34,3 +34,29 @@ class RegenCaptcha(discord.ui.View):
         ) 
 
 
+class YesNo(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.timeout = 25
+        self.value = False
+    
+    @discord.ui.button(style=discord.ButtonStyle.Green, label="Yes")
+    async def btnYes(self, button: discord.ui.Button, interaction: discord.Interaction):
+        self.value = True
+        self.stop()
+    
+    @discord.ui.button(style=discord.ButtonStyle.red, label="No")
+    async def btnNo(self, button: discord.ui.Button, interaction: discord.Interaction):
+        self.stop()
+
+
+class Skip(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.timeout = 30
+        self.value = False
+    
+    @discord.ui.View(style=discord.ButtonStyle.blurple, label="Skip")
+    async def btnSkip(self, button: discord.ui.Button, interaction: discord.Interaction):
+        self.value = True
+        self.stop()
