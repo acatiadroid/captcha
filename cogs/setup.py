@@ -31,11 +31,12 @@ class Configuration(commands.Cog):
         view = BeginVerification()
         msg = await channel.send(embed=e, view=view)
         insert_config(
+            ctx.guild.id,
             {
                 "msg_channel": channel.id,
                 "msg_id": msg.id
             },
-            ctx
+            append=False
         )
         
         await ctx.send(f"Success! The message has been sent into {channel.mention}.")
@@ -56,8 +57,17 @@ class Configuration(commands.Cog):
         if role.position >= botrole.position:
             return await ctx.send(f'{role} (position: {role.position})is above or equal to my highest role {botrole} (position: {botrole.position}). This means I can\'t give that role.')
 
+        if role.position >= ctx.author.top_role.position and ctx.author != ctx.guild.owner:
+            return await ctx.send("That role is above or equal to your highest role, therefore you cannot set it.")
         
-        
+        insert_config(
+            ctx.guild.id,
+            append=True,
+            key="verified_role",
+            value=role.id
+        )
+
+        await ctx.send(f"Success! Verified role has been set to **{role}**")
 
 
 
