@@ -40,7 +40,7 @@ class YesNo(discord.ui.View):
         self.timeout = 25
         self.value = False
     
-    @discord.ui.button(style=discord.ButtonStyle.Green, label="Yes")
+    @discord.ui.button(style=discord.ButtonStyle.green, label="Yes")
     async def btnYes(self, button: discord.ui.Button, interaction: discord.Interaction):
         self.value = True
         self.stop()
@@ -56,7 +56,7 @@ class Skip(discord.ui.View):
         self.timeout = 30
         self.value = False
     
-    @discord.ui.View(style=discord.ButtonStyle.blurple, label="Skip")
+    @discord.ui.button(style=discord.ButtonStyle.blurple, label="Skip")
     async def btnSkip(self, button: discord.ui.Button, interaction: discord.Interaction):
         self.value = True
         self.stop()
