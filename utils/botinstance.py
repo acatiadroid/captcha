@@ -1,5 +1,5 @@
 from discord import AllowedMentions, Intents
-from discord.ext import commands
+from discord.ext import commands, ipc
 
 class Bot(commands.Bot):
     def __init__(self):
@@ -16,6 +16,9 @@ class Bot(commands.Bot):
                 intents=Intents.all(),
                 owner_id=600056626749112322
             )
+        self.ipc = ipc.Server(self, secret_key="abc")
     
     async def on_ready(self):
         print("yo")
+    
+        
