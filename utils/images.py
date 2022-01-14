@@ -26,4 +26,3 @@ def delete_captcha(*, filename: str):
         return True
     except FileNotFoundError:
         return False
-    

@@ -20,5 +20,3 @@ class Bot(commands.Bot):
     
     async def on_ready(self):
         print("yo")
-    
-        
